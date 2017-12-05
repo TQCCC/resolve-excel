@@ -1,4 +1,4 @@
-package com.tqc.resolvingexcel.exception;
+package com.tqc.resolveexcel.exception;
 
 /**
  * Created by tangqingchang on 2017/12/4.

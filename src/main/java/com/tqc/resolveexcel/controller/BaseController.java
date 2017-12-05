@@ -1,7 +1,7 @@
-package com.tqc.resolvingexcel.controller;
+package com.tqc.resolveexcel.controller;
 
-import com.tqc.resolvingexcel.enums.CommonResultEnum;
-import com.tqc.resolvingexcel.model.vo.CommonResponse;
+import com.tqc.resolveexcel.enums.CommonResultEnum;
+import com.tqc.resolveexcel.model.vo.CommonResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;

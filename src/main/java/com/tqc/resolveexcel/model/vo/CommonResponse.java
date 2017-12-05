@@ -1,6 +1,6 @@
-package com.tqc.resolvingexcel.model.vo;
+package com.tqc.resolveexcel.model.vo;
 
-import com.tqc.resolvingexcel.enums.CommonResultEnum;
+import com.tqc.resolveexcel.enums.CommonResultEnum;
 import lombok.Data;
 import lombok.ToString;
 

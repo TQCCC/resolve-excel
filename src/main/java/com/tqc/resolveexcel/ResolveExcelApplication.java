@@ -1,12 +1,12 @@
-package com.tqc.resolvingexcel;
+package com.tqc.resolveexcel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ResolvingExcelApplication {
+public class ResolveExcelApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ResolvingExcelApplication.class, args);
+		SpringApplication.run(ResolveExcelApplication.class, args);
 	}
 }

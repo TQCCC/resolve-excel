@@ -1,4 +1,4 @@
-package com.tqc.resolvingexcel.enums;
+package com.tqc.resolveexcel.enums;
 
 /**
  * Created by tangqingchang on 2017/12/4.

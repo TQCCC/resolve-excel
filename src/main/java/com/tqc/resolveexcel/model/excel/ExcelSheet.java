@@ -1,4 +1,4 @@
-package com.tqc.resolvingexcel.model.excel;
+package com.tqc.resolveexcel.model.excel;
 
 import lombok.Data;
 import lombok.ToString;

@@ -1,7 +1,7 @@
-package com.tqc.resolvingexcel.controller;
+package com.tqc.resolveexcel.controller;
 
-import com.tqc.resolvingexcel.model.excel.ExcelResultSet;
-import com.tqc.resolvingexcel.service.ResolveExcelService;
+import com.tqc.resolveexcel.model.excel.ExcelResultSet;
+import com.tqc.resolveexcel.service.ResolveExcelService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,9 @@ import java.io.InputStream;
  * 解析Excel的controller
  */
 @Controller
-public class ResolvingExcelController extends BaseController {
+public class ResolveExcelController extends BaseController {
 
-	private static Logger logger = LoggerFactory.getLogger(ResolvingExcelController.class);
+	private static Logger logger = LoggerFactory.getLogger(ResolveExcelController.class);
 
 	@Autowired
 	private ResolveExcelService resolveExcelService;

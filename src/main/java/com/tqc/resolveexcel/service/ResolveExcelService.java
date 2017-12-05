@@ -1,6 +1,6 @@
-package com.tqc.resolvingexcel.service;
+package com.tqc.resolveexcel.service;
 
-import com.tqc.resolvingexcel.model.excel.ExcelResultSet;
+import com.tqc.resolveexcel.model.excel.ExcelResultSet;
 
 import java.io.InputStream;
 
