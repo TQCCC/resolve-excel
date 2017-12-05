@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>upload test</title>
+    <meta charset="UTF-8"/>
+</head>
+
+<body>
+
+<div align="center">
+    <form enctype="multipart/form-data" method="post" action="/uploadExcel">
+        Excel文件上传解析，支持格式：xls、xlsx，文件大小不超过100Mb：<br/>
+        <input type="file" name="file"/>
+        <input type="submit" value="上传"/>
+    </form>
+
+    <div th:if="${result.data} and ${result.resultCode} == 1">
+        <h3>上传成功</h3>
+
+        <div th:each="sheet:${result.data.sheets}">
+            <span th:text="${sheet.name}"></span>
+            <table border="2">
+                <tr th:each="row:${sheet.content}">
+                    <td th:each="cell:${row}">
+                        <span th:text="${cell}"></span>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <br/>
+        </div>
+    </div>
+
+    <div th:if="${result.resultCode} == 0">
+        <h3>出错</h3>
+        <span th:text="${result.msg}"></span>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Error</title>
+</head>
+<div align="center">
+    <h2 style="color: red;">系统错误</h2>
+    <div th:if="${result.resultCode} == 0">
+        <h2 style="color: red;">
+            错误码： <span th:text="${result.resultCode}"></span>
+            错误描述： <span th:text="${result.msg}"></span>
+        </h2>
+    </div>
+</div>
+</html>
