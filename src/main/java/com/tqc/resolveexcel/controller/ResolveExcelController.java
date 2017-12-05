@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -41,17 +40,23 @@ public class ResolveExcelController extends BaseController {
 	}
 
 	@RequestMapping(value = "/uploadExcel")
-	public ModelAndView uploadExcel(@RequestParam("file") MultipartFile file) throws IOException {
+	public ModelAndView uploadExcel(@RequestParam("file") MultipartFile file) {
 
 		String filename = file.getOriginalFilename();
 		if (!isExcelFilename(filename)) {
 			return error("upload", "请上传后缀名是xls、xlsx的excel文件");
 		}
 
-		InputStream is = file.getInputStream();
-		ExcelResultSet excelResultSet = resolveExcelService.resolveExcel(is);
-		is.close();
-		return success("upload", excelResultSet);
+		try {
+			InputStream is = file.getInputStream();
+			ExcelResultSet excelResultSet = resolveExcelService.resolveExcel(is);
+			is.close();
+			return success("upload", excelResultSet);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return error("upload", e.getMessage());
+		}
+
 	}
 
 

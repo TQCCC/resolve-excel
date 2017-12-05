@@ -4,20 +4,18 @@ import com.tqc.resolveexcel.exception.CommonException;
 import com.tqc.resolveexcel.model.excel.ExcelResultSet;
 import com.tqc.resolveexcel.model.excel.ExcelSheet;
 import com.tqc.resolveexcel.service.ResolveExcelService;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by tangqingchang on 2017/12/5.,m nb
+ * Created by tangqingchang on 2017/12/5.
  * 解析Excel实现类
  */
 @Service
@@ -31,35 +29,29 @@ public class ResolveExcelServiceImpl implements ResolveExcelService {
 		ExcelResultSet excelResultSet = new ExcelResultSet();
 		try {
 			//Excel文件
-			XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
-
-			int numberOfSheet = xssfWorkbook.getNumberOfSheets();
-			excelResultSet.setNumberOfSheet(numberOfSheet);
+			Workbook workbook = WorkbookFactory.create(is);
 
 			List<ExcelSheet> sheets = new ArrayList<ExcelSheet>();
-			//处理每个sheet
-			for (int s = 0; s < numberOfSheet; s++) {
-				ExcelSheet excelSheet = new ExcelSheet();
-				XSSFSheet sheet = xssfWorkbook.getSheetAt(s);
 
+			Iterator<Sheet> its = workbook.sheetIterator();
+			//处理每个sheet
+			while (its.hasNext()) {
+				Sheet sheet = its.next();
+				ExcelSheet excelSheet = new ExcelSheet();
 				excelSheet.setName(sheet.getSheetName());
-				int numberOfRow = sheet.getLastRowNum();
-				excelSheet.setNumberOfRow(numberOfRow);
 
 				List<List<String>> content = new ArrayList<List<String>>();
+
+				Iterator<Row> itr = sheet.rowIterator();
 				//处理该sheet下每一行
-				for (int r = 0; r < numberOfRow; r++) {
+				while (itr.hasNext()) {
+					Row row = itr.next();
 					List<String> contentsOfRow = new ArrayList<String>();
-					XSSFRow row = sheet.getRow(r);
-					short numberOfCell = (row == null) ? 0 : row.getLastCellNum();
 					//处理该行每个cell
-					for (int c = 0; c < numberOfCell; c++) {
-						XSSFCell cell = row.getCell(c);
-						if (cell == null) {
-							contentsOfRow.add("");
-						} else {
-							contentsOfRow.add(cell.toString());
-						}
+					Iterator<Cell> itc = row.cellIterator();
+					while (itc.hasNext()) {
+						Cell cell = itc.next();
+						contentsOfRow.add(cell.toString());
 					}
 					content.add(contentsOfRow);
 				}
