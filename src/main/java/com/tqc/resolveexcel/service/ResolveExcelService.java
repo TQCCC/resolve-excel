@@ -11,8 +11,8 @@ import java.io.InputStream;
 public interface ResolveExcelService {
 
 	/**
-	 * @param is excel文件输入流
+	 * @param path excel文件路径
 	 * @return 解析结果
 	 */
-	ExcelResultSet resolveExcel(InputStream is);
+	ExcelResultSet resolveExcel(String path);
 }

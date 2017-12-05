@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.InputStream;
 
 /**
@@ -40,7 +42,7 @@ public class ResolveExcelController extends BaseController {
 	}
 
 	@RequestMapping(value = "/uploadExcel")
-	public ModelAndView uploadExcel(@RequestParam("file") MultipartFile file) {
+	public ModelAndView uploadExcel(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
 
 		String filename = file.getOriginalFilename();
 		if (!isExcelFilename(filename)) {
@@ -48,9 +50,17 @@ public class ResolveExcelController extends BaseController {
 		}
 
 		try {
-			InputStream is = file.getInputStream();
-			ExcelResultSet excelResultSet = resolveExcelService.resolveExcel(is);
-			is.close();
+			String uploadDir = request.getSession().getServletContext().getRealPath("/") + "upload/";
+			File dir = new File(uploadDir);
+			if (!dir.exists()) {
+				dir.mkdir();
+			}
+			File uploadFile = new File(uploadDir + file.getOriginalFilename());
+			//先保存到本地
+			file.transferTo(uploadFile);
+			//解析，返回结果
+			ExcelResultSet excelResultSet = resolveExcelService.resolveExcel(uploadFile.getAbsolutePath());
+
 			return success("upload", excelResultSet);
 		} catch (Exception e) {
 			e.printStackTrace();
