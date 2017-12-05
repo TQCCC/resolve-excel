@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.InputStream;
+import java.util.UUID;
 
 /**
  * Created by tangqingchang on 2017/12/4.
@@ -55,7 +56,7 @@ public class ResolveExcelController extends BaseController {
 			if (!dir.exists()) {
 				dir.mkdir();
 			}
-			File uploadFile = new File(uploadDir + file.getOriginalFilename());
+			File uploadFile = new File(uploadDir + UUID.randomUUID() + file.getOriginalFilename());
 			//先保存到本地
 			file.transferTo(uploadFile);
 			//解析，返回结果
