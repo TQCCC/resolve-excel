@@ -2,8 +2,6 @@ package com.tqc.resolveexcel.service;
 
 import com.tqc.resolveexcel.model.excel.ExcelResultSet;
 
-import java.io.InputStream;
-
 /**
  * Created by tangqingchang on 2017/12/4.
  * 解析Excel核心接口
