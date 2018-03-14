@@ -1,6 +1,6 @@
 package com.tqc.resolveexcel.service;
 
-import com.tqc.resolveexcel.model.excel.ExcelResultSet;
+import com.tqc.resolveexcel.model.excel.ExcelSet;
 
 /**
  * Created by tangqingchang on 2017/12/4.
@@ -8,9 +8,9 @@ import com.tqc.resolveexcel.model.excel.ExcelResultSet;
  */
 public interface ResolveExcelService {
 
-	/**
-	 * @param path excel文件路径
-	 * @return 解析结果
-	 */
-	ExcelResultSet resolveExcel(String path);
+    /**
+     * @param path excel文件路径
+     * @return 解析结果
+     */
+    ExcelSet resolveExcel(String path);
 }
